@@ -41,7 +41,7 @@ public class PlayableCases extends Cases{
     /*Idée pour définir les couleurs des cases, voir algo de sobel
     Les valeurs ne sont pas définitives c'est qu'un exemple
     */
-    private int[] playablecasesColor(){
+    protected int[] color(){
         int[] rgb=new int[3];
         rgb[1]=165;
         rgb[2]=30;

@@ -35,7 +35,7 @@ public class EmptyCases extends Cases {
     /*Idée pour définir les couleurs des cases, voir algo de sobel
       Les valeurs ne sont pas définitives c'est qu'un exemple
      */
-    private int[] emptyCasesColor(){
+    protected int[] color(){
         int[] rgb=new int[3];
         rgb[1]=240;
         rgb[2]=185;

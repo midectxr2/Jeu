@@ -16,4 +16,6 @@ public abstract class Cases {
 
     public abstract boolean isMovable();
 
+    protected abstract int[] color();
+
 }
