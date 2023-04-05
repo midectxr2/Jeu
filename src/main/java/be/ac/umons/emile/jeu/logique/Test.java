@@ -8,7 +8,8 @@ public class Test {
         piece.addCases(new PlayableCases(0,0));
         piece.addCases(new PlayableCases(1,0));
         piece.addCases(new PlayableCases(2,0));
-        grid.addPiece(piece);
+        grid.addPiece2(piece);
+        grid.printGrid();
 
 
 

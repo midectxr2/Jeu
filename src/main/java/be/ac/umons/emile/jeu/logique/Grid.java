@@ -8,7 +8,7 @@ public class Grid {
       Ne fonctionne que pour la ArrayList de Gridv1
 
      */
-    public void addPiece(Pieces piece){
+   /* public void addPiece(Pieces piece){
         int yMax=piece.yMax();
         for (ArrayList<PlayableCases>p:piece.piece){
             for(Cases c:p){
@@ -43,7 +43,7 @@ public class Grid {
     public void printGrid(){
         for(int i=0 ;i<grid.length ;i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                System.out.print(grid[i][j]);
+                System.out.print(grid[i][j].value);
             }
             System.out.print("\n");
         }
