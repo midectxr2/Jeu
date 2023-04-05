@@ -5,7 +5,7 @@ public class EmptyCases extends Cases{
     private int y;
 
     private int value;
-    public EmptyCases(int x,int y,int value){
+    public EmptyCases(int x,int y){
         super(x,y,0);
 
     }
