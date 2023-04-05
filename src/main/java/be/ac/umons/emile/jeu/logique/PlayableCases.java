@@ -4,12 +4,18 @@ public class PlayableCases extends Cases{
     private int x;
     private int y;
 
-    private int value;
+    protected int value;
     /*Constructeur des pièces modifiables*/
-    public PlayableCases(int x, int y){
-        this.x=x;
-        this.y=y;
-        this.value=1;
+    public PlayableCases(int value,int x, int y){
+        super(x,y,value);
+        this.value=value;
+
+    }
+
+    public PlayableCases(int x,int y){
+        this(1,x,y);
+
+
     }
     /*Getter pour la coordonnée x*/
     public int getX(){
