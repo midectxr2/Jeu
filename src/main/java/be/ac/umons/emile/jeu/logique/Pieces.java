@@ -2,7 +2,7 @@ package be.ac.umons.emile.jeu.logique;
 import java.util.ArrayList;
 import java.util.List;
 public class Pieces {
-    private Cases[] shape=new Cases[12];
+    private PlayableCases[] shape=new PlayableCases[12];
     private int value;
 
     public Pieces(int value) {
@@ -253,7 +253,9 @@ public class Pieces {
     /*rotation de la pièce
      */
     public void rotatePiece() {
-
+        for(int i=0;i<12;i++){
+            shape[i].rotate();
+        }
     }
 
     /*Fonction à implémenter pour déplacer les pièces
