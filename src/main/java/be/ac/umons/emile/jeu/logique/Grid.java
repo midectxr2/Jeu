@@ -1,7 +1,7 @@
 package be.ac.umons.emile.jeu.logique;
 import java.util.ArrayList;
 public class Grid {
-    Cases[][] grid=new Cases[3][3];
+    Cases[][] grid=new Cases[6][3];
     ArrayList<Cases> cases=new ArrayList<>();
 
     /*Permet d'ajouter une pièce au bon endroit dans la grille (selon y seulement pour l'instant)
@@ -53,6 +53,7 @@ public class Grid {
     /*Permet l'ajout d'une nouvelle pièce sur un tableau fixe
 
      */
+    /*
     public void addPiece2(Pieces piece){
         for(ArrayList<PlayableCases>p:piece.piece) {
             for(Cases c:p) {
@@ -70,6 +71,8 @@ public class Grid {
         }
 
     }
+
+     */
 
 
 

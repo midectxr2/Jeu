@@ -1,14 +1,13 @@
 package be.ac.umons.emile.jeu.logique;
 
 public class PlayableCases extends Cases{
-    private int x;
-    private int y;
 
     protected int value;
     /*Constructeur des pièces modifiables*/
     public PlayableCases(int x, int y,int value) {
 
-        super(x, y, 1);
+        super(x, y);
+        this.value=value;
     }
 
     /*Getter pour la coordonnée x*/
@@ -36,7 +35,7 @@ public class PlayableCases extends Cases{
     public void rotate() {
         int temp=0;
         temp=this.x;
-        this.x = -this.y;
+        this.x = this.y;
         this.y=temp;
     }
     /*Idée pour définir les couleurs des cases, voir algo de sobel
@@ -48,5 +47,8 @@ public class PlayableCases extends Cases{
         rgb[2]=30;
         rgb[3]=75;
         return rgb;
+    }
+    public String toString(){
+        return "" + value;
     }
 }

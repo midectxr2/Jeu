@@ -1,13 +1,11 @@
 package be.ac.umons.emile.jeu.logique;
 
 public class EmptyCases extends Cases {
-    private int x;
-    private int y;
 
     private int value;
 
     public EmptyCases(int x, int y) {
-        super(x, y, 0);
+        super(x, y);
 
     }
 
@@ -42,5 +40,9 @@ public class EmptyCases extends Cases {
         rgb[3]=320;
         return rgb;
 
+    }
+    public void rotate(){}
+    public String toString(){
+        return"";
     }
 }
