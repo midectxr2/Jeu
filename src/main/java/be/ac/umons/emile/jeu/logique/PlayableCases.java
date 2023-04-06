@@ -6,8 +6,7 @@ public class PlayableCases extends Cases{
 
     protected int value;
     /*Constructeur des pièces modifiables*/
-    public PlayableCases(int x, int y,int value) {
-
+    public PlayableCases(int x, int y) {
         super(x, y, 1);
     }
 
