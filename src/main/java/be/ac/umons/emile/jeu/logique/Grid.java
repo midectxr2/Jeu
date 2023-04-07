@@ -1,13 +1,14 @@
 package be.ac.umons.emile.jeu.logique;
 import java.util.ArrayList;
 public class Grid {
-    ArrayList<ArrayList<Cases>> grid=new ArrayList<>();
+    Cases[][] grid=new Cases[6][3];
     ArrayList<Cases> cases=new ArrayList<>();
 
-    /*Permet d'ajouter une pièce au bon endroit dans la grille (selon ly seulement pour l'instant
+    /*Permet d'ajouter une pièce au bon endroit dans la grille (selon y seulement pour l'instant)
+      Ne fonctionne que pour la ArrayList de Gridv1
 
      */
-    public void addPiece(Pieces piece){
+   /* public void addPiece(Pieces piece){
         int yMax=piece.yMax();
         for (ArrayList<PlayableCases>p:piece.piece){
             for(Cases c:p){
@@ -24,6 +25,54 @@ public class Grid {
         }
 
     }
+
+    /*Construction de la grille au cas où on utilise un tableau fixe
+
+     */
+    private void buildingGrid(){
+        for(int i=0 ;i<grid.length ;i++){
+            for(int j=0;j<grid[i].length;j++){
+                grid[i][j]= new PlayableCases(i,j,0);
+            }
+        }
+    }
+
+    /*Affichage de la grille pour tableau fixe
+
+     */
+    public void printGrid(){
+        for(int i=0 ;i<grid.length ;i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                System.out.print(grid[i][j].value);
+            }
+            System.out.print("\n");
+        }
+
+    }
+
+    /*Permet l'ajout d'une nouvelle pièce sur un tableau fixe
+
+     */
+    /*
+    public void addPiece2(Pieces piece){
+        for(ArrayList<PlayableCases>p:piece.piece) {
+            for(Cases c:p) {
+                for (int i = 0; i < grid.length; i++) {
+                    if(c.getY()==i){
+                        for(int j=0; j<grid[i].length;j++){
+                            if(c.getX()==j){
+                                grid[i][j]=c;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
+     */
 
 
 
