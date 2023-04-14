@@ -4,8 +4,9 @@ public class EmptyCases extends Cases {
 
     private int value;
 
-    public EmptyCases(int x, int y) {
+    public EmptyCases(int x, int y, int value) {
         super(x, y);
+        this.value=value;
 
     }
 

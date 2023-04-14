@@ -7,7 +7,6 @@ public abstract class Cases {
     public Cases(int x, int y){
         this.x=x;
         this.y=y;
-        this.value=value;
     }
 
     public abstract int getX();
