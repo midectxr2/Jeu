@@ -186,5 +186,92 @@ public class Form {
                     p.value = 0;
             }
         }
+        if(value == 16) {
+            for (int i = 1; i < 8; i++) {
+                for (int j = 1; j < 8; j++) {
+                    form.add(new PlayableCases(i, j, value));
+                }
+            }
+            for (PlayableCases p : form) {
+                if (p.getX() == 1 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 2 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 2)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 5)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 2 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 2 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 3 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 5 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 6 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 6 && p.getY() == 2)
+                    p.value = 0;
+                if (p.getX() == 6 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 2)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 3)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 7)
+                    p.value = 0;
+            }
+        }
+        if(value == 17) {
+            for (int i = 1; i < 9; i++) {
+                for (int j = 1; j < 8; j++) {
+                    form.add(new PlayableCases(i, j, value));
+                }
+            }
+            for (PlayableCases p : form) {
+                if (p.getX() == 1 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 4 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 5 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 8 && p.getY() == 1)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 5)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 1 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 2 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 2 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 3 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 6 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 7 && p.getY() == 7)
+                    p.value = 0;
+                if (p.getX() == 8 && p.getY() == 5)
+                    p.value = 0;
+                if (p.getX() == 8 && p.getY() == 6)
+                    p.value = 0;
+                if (p.getX() == 8 && p.getY() == 7)
+                    p.value = 0;
+            }
+        }
+
     }
 }
