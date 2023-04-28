@@ -1,6 +1,10 @@
 package be.ac.umons.emile.jeu.logique;
+import be.ac.umons.emile.jeu.javafx.Main;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
-public class Pieces {
+public class Pieces extends StackPane {
     public ArrayList<PlayableCases> shape=new ArrayList<>();
     public int value;
 
@@ -241,6 +245,7 @@ public class Pieces {
             shape.add(new PlayableCases(3,2,value));
 
         }
+        getChildren().addAll(shape);
 
     }
 
@@ -265,41 +270,10 @@ public class Pieces {
     /*Affiche les pièces mais ne prend pas en compte le placement selon les coord x
     !!à corriger!!
      */
-    public void printPiece() {
-        boolean cond = true;
-        for (int i = 0; i < yMax() + 1; i++) {
-
-            for (PlayableCases c : shape) {
-                if (c.getY() == i)
-                    System.out.print(c);
-
-            }
-        System.out.print("\n");
-        }
-    }
 
     /*Permet d'obtenir le y max d'une pièce
 
      */
-    private int yMax(){
-        int max=0;
-        for (PlayableCases c: shape){
-            if(c.getY()>max){
-                max=c.getY();
-            }
-        }
-        return max;
-    }
-
-    private int xMax(){
-        int max=0;
-        for(PlayableCases c: shape){
-            if(c.getX()>max){
-                max=c.getX();
-            }
-        }
-        return max;
-    }
 
 
 

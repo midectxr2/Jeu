@@ -1,27 +1,16 @@
 package be.ac.umons.emile.jeu.logique;
 
+import javafx.scene.paint.Color;
+
 public class EmptyCases extends Cases {
 
     private int value;
 
     public EmptyCases(int x, int y) {
-        super(x, y);
-
+        super(x , y);
+        setFill(Color.valueOf("#582"));
     }
 
-    /*getter de la coordonnée x
-
-     */
-    public int getX() {
-        return this.x;
-    }
-
-    /*getter de la coordonnée y
-
-     */
-    public int getY() {
-        return this.y;
-    }
 
     /*Permet de savoir si l'on peut bouger la case
 

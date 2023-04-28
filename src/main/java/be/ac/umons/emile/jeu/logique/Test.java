@@ -1,10 +1,10 @@
 package be.ac.umons.emile.jeu.logique;
 
 import java.util.ArrayList;
-public class Test {
-    public static void main(String args[]){
-        Pieces piece= new Pieces(30);
-        piece.printPiece();
+//public class Test {
+//  public static void main(String args[]){
+//        Pieces piece= new Pieces(30);
+//        piece.printPiece();
 
 
 
@@ -17,6 +17,6 @@ public class Test {
 
          */
 
-    }
-}
+//    }
+//}
 

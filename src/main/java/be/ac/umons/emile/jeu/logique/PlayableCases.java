@@ -1,5 +1,7 @@
 package be.ac.umons.emile.jeu.logique;
 
+import javafx.scene.paint.Color;
+
 public class PlayableCases extends Cases{
 
     protected int value;
@@ -8,14 +10,8 @@ public class PlayableCases extends Cases{
 
         super(x, y);
         this.value=value;
+        setFill(Color.BLACK);
     }
-
-    /*Getter pour la coordonnée x*/
-    public int getX(){
-        return this.x;
-    }
-    /*Getter pour la coordonnée y*/
-    public int getY(){return this.y;}
 
     /*Permet de savoir si la case peut-être déplacée/modifiée ou non*/
     public boolean isMovable(){
