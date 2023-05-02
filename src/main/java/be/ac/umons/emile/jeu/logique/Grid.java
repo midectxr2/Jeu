@@ -32,7 +32,7 @@ public class Grid {
     private void buildingGrid(){
         for(int i=0 ;i<grid.length ;i++){
             for(int j=0;j<grid[i].length;j++){
-                grid[i][j]= new PlayableCases(i,j,0);
+                grid[i][j]= new PlayableCases(i,j);
             }
         }
     }
@@ -43,7 +43,7 @@ public class Grid {
     public void printGrid(){
         for(int i=0 ;i<grid.length ;i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                System.out.print(grid[i][j].value);
+                System.out.print(grid[i][j]);
             }
             System.out.print("\n");
         }

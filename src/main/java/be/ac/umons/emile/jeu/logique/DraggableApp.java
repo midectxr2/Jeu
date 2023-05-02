@@ -6,7 +6,7 @@ import javafx.scene.Node;
 public class DraggableApp {
     public double startX;
     public double startY;
-    public void makeDraggable(Pieces piece2){
+    public void makeDraggable(Node piece2){
         piece2.setOnMousePressed(event -> {
             startX = event.getSceneX() - piece2.getTranslateX();
             startY = event.getSceneY() - piece2.getTranslateY();

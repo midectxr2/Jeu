@@ -20,7 +20,7 @@ public abstract class Cases extends Rectangle {
     public void setPiece(Pieces piece){
         this.piece = piece;
     }
-    protected int value;
+
     protected int x;
     protected int y;
     public Cases(int x, int y){
@@ -33,7 +33,6 @@ public abstract class Cases extends Rectangle {
 
         this.x=x;
         this.y=y;
-        this.value=value;
 
     }
 
@@ -47,6 +46,5 @@ public abstract class Cases extends Rectangle {
 
     public abstract void rotate();
 
-    public abstract String toString();
 
 }

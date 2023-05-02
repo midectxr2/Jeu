@@ -4,12 +4,9 @@ import javafx.scene.paint.Color;
 
 public class PlayableCases extends Cases{
 
-    protected int value;
     /*Constructeur des pièces modifiables*/
-    public PlayableCases(int x, int y,int value) {
-
+    public PlayableCases(int x, int y) {
         super(x, y);
-        this.value=value;
         setFill(Color.BLACK);
     }
 
@@ -44,7 +41,7 @@ public class PlayableCases extends Cases{
         rgb[3]=75;
         return rgb;
     }
-    public String toString(){
-        return "" + value;
-    }
+
+
+
 }
