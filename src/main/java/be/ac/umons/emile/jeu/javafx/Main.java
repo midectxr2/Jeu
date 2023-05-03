@@ -2,17 +2,23 @@ package be.ac.umons.emile.jeu.javafx;
 
 import be.ac.umons.emile.jeu.logique.*;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.MouseButton;
+
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
+import org.w3c.dom.events.Event;
+
 
 public class Main extends Application {
 
@@ -20,6 +26,7 @@ public class Main extends Application {
     public static final int PLAYABLE_WIDTH = 6;
     public static final int PLAYABLE_HEIGHT = 6;
 
+    private RotationApp rot= new RotationApp();
     private DraggableApp drag=new DraggableApp();
     private Group tileGroup = new Group();
     private Group pieceGroup = new Group();
@@ -39,7 +46,9 @@ public class Main extends Application {
 
         Rectangle r=new Rectangle();
         Pieces piece = new Pieces('a');
-        Pieces piece2=new Pieces('b');
+        Pieces piece2=new Pieces('w');
+
+
 
         for(int i=0;i<piece.shape.size();i++){
             pieceGroup.getChildren().add(piece.shape.get(i));
@@ -63,12 +72,30 @@ public class Main extends Application {
                 tileGroup.getChildren().add(tile);
             }
         }
-        drag.makeDraggable(pieceGroup2);
+
+        rot.Rotation(pieceGroup);
+        rot.Rotation(pieceGroup2);
         drag.makeDraggable(pieceGroup);
+        drag.makeDraggable(pieceGroup2);
 
         return root;
     }
 
+
+    public void handle(MouseEvent event) {
+        MouseButton button = event.getButton();
+        if(button==MouseButton.PRIMARY){
+            drag.makeDraggable(pieceGroup2);
+            drag.makeDraggable(pieceGroup);
+        }else if(button==MouseButton.SECONDARY){
+            rot.Rotation(pieceGroup);
+            rot.Rotation(pieceGroup2);
+        }
+
+
+
+
+    }
     @Override
     public void start(Stage stage) throws Exception{
         Scene scene = new Scene(createContent());

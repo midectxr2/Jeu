@@ -3,9 +3,6 @@ import be.ac.umons.emile.jeu.javafx.Main;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-
-
 import java.util.ArrayList;
 public class Pieces extends StackPane {
 
@@ -266,13 +263,7 @@ public class Pieces extends StackPane {
 
     }
 
-    /*Affiche les pièces mais ne prend pas en compte le placement selon les coord x
-    !!à corriger!!
-     */
 
-    /*Permet d'obtenir le y max d'une pièce
-
-     */
 
 
 

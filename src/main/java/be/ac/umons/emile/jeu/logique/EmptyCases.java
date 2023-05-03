@@ -31,7 +31,5 @@ public class EmptyCases extends Cases {
 
     }
     public void rotate(){}
-    public String toString(){
-        return"";
-    }
+
 }
