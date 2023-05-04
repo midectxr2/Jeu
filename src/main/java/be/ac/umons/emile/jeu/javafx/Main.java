@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.MouseButton;
-
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -26,7 +26,8 @@ public class Main extends Application {
     public static final int PLAYABLE_WIDTH = 6;
     public static final int PLAYABLE_HEIGHT = 6;
 
-    private RotationApp rot= new RotationApp();
+    private RotationApp rot;
+    private RotationApp rot2;
     private DraggableApp drag=new DraggableApp();
     private Group tileGroup = new Group();
     private Group pieceGroup = new Group();
@@ -35,13 +36,11 @@ public class Main extends Application {
 
     private Parent createContent() {
         BorderPane root = new BorderPane();
+        GridPane grid=new GridPane();
+        grid.setAlignment(Pos.CENTER);
 
+        root.setCenter(grid);
 
-        root.setCenter(tileGroup);
-        root.setRight(pieceGroup);
-        root.setLeft(pieceGroup2);
-        BorderPane.setAlignment(pieceGroup, Pos .CENTER);
-        BorderPane.setAlignment(tileGroup, Pos .CENTER);
 
 
         Rectangle r=new Rectangle();
@@ -50,13 +49,13 @@ public class Main extends Application {
 
 
 
-        for(int i=0;i<piece.shape.size();i++){
+        /*for(int i=0;i<piece.shape.size();i++){
             pieceGroup.getChildren().add(piece.shape.get(i));
         }
 
         for(int i=0;i<piece2.shape.size();i++){
             pieceGroup2.getChildren().add(piece2.shape.get(i));
-        }
+        }*/
 
         /*Pour faire en sorte que ça stick à la grille faudrait qu'on "invoque une board" comme ç c'est déjà
         un tout qu'on met dans un groupe puis faudrait faire une classe comme DraggableApp qui dit:
@@ -69,15 +68,19 @@ public class Main extends Application {
             for(int x = 0; x< PLAYABLE_WIDTH; x++){
                 EmptyCases tile = new EmptyCases(x, y);
 
-                tileGroup.getChildren().add(tile);
+               grid.add(tile,x,y);
             }
         }
-
+        rot=new RotationApp(pieceGroup,piece);
+        rot2=new RotationApp(pieceGroup2,piece2);
         rot.Rotation(pieceGroup);
-        rot.Rotation(pieceGroup2);
+        rot2.Rotation(pieceGroup2);
         drag.makeDraggable(pieceGroup);
         drag.makeDraggable(pieceGroup2);
-
+        root.setRight(pieceGroup);
+        root.setLeft(pieceGroup2);
+        BorderPane.setAlignment(pieceGroup, Pos .CENTER);
+        BorderPane.setAlignment(tileGroup, Pos .CENTER);
         return root;
     }
 

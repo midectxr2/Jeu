@@ -21,9 +21,9 @@ public abstract class Cases extends Rectangle {
         this.piece = piece;
     }
 
-    protected int x;
-    protected int y;
-    public Cases(int x, int y){
+    protected double x;
+    protected double y;
+    public Cases(double x,double y){
 
         setWidth(Main.TILE_SIZE);
         setHeight(Main.TILE_SIZE);
@@ -44,7 +44,7 @@ public abstract class Cases extends Rectangle {
 
     protected abstract int[] color();
 
-    public abstract void rotate();
+
 
 
 }

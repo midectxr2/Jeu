@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 public class PlayableCases extends Cases{
 
     /*Constructeur des pièces modifiables*/
-    public PlayableCases(int x, int y) {
+    public PlayableCases(double x,double y) {
         super(x, y);
         setFill(Color.BLACK);
     }
@@ -15,22 +15,16 @@ public class PlayableCases extends Cases{
         return true;
     }
     /*Setter pour la coordonnée x*/
-    public int setX(int x){
+    public void setX(int x){
         this.x=x;
-        return x;
     }
     /*Setter pour la coordonnée y*/
-    public int setY(int y){
+    public void setY(int y){
         this.y=y;
-        return this.y;
+
     }
     /*Changement de place d'une case permettant la rotation d'une pièce*/
-    public void rotate() {
-        int temp=0;
-        temp=this.x;
-        this.x = this.y;
-        this.y=temp;
-    }
+
     /*Idée pour définir les couleurs des cases, voir algo de sobel
     Les valeurs ne sont pas définitives c'est qu'un exemple
     */

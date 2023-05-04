@@ -252,18 +252,72 @@ public class Pieces extends StackPane {
      */
     public void rotatePiece() {
         for(PlayableCases c:shape){
-            c.rotate();
+
         }
     }
 
     /*Fonction à implémenter pour déplacer les pièces
 
      */
-    public void movePiece() {
 
+    public double maxX(){
+        double max=0;
+        for(PlayableCases c:shape){
+            if(c.getX()>max){
+                max=c.getX();
+            }
+        }
+        return max;
     }
 
+    public double minX(){
+        double min;
+        min=shape.get(0).getX();
+        for(PlayableCases c:shape){
+            if(c.getX()>min){
+                min=c.getX();
+            }
+        }
+        return min;
+    }
+    public double maxY(){
+        double max=0;
+        for(PlayableCases c:shape){
+            if(c.getY()>max){
+                max=c.getY();
+            }
+        }
+        return max;
+    }
 
+    public double minY(){
+        double min;
+        min=shape.get(0).getY();
+        for(PlayableCases c:shape){
+            if(c.getY()>min){
+                min=c.getX();
+            }
+        }
+        return min;
+    }
+    public double getCenterX(){
+        return (minX()+maxX())/2;
+    }
+
+    public double getCenterY(){
+        return (minY()+maxY())/2;
+    }
+
+    public void rotate(){
+        double xc=getCenterX();
+        double yc=getCenterY();
+
+        for(PlayableCases c:shape){
+            c.setX(xc-(c.getY()-yc));
+            c.setY(yc+(c.getX()-xc));
+        }
+
+    }
 
 
 
