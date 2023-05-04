@@ -7,10 +7,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 public class Pieces extends StackPane {
-
+    private char value;
     public ArrayList<PlayableCases> shape=new ArrayList<>();
 
     public Pieces(char value) {
+        this.value=value;
         if(value=='a'){
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(1,1));
