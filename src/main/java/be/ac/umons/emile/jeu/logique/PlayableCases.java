@@ -14,16 +14,6 @@ public class PlayableCases extends Cases{
     public boolean isMovable(){
         return true;
     }
-    /*Setter pour la coordonnée x*/
-    public void setX(int x){
-        this.x=x;
-    }
-    /*Setter pour la coordonnée y*/
-    public void setY(int y){
-        this.y=y;
-
-    }
-    /*Changement de place d'une case permettant la rotation d'une pièce*/
 
     /*Idée pour définir les couleurs des cases, voir algo de sobel
     Les valeurs ne sont pas définitives c'est qu'un exemple

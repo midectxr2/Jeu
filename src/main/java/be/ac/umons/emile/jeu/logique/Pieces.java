@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 public class Pieces extends StackPane {
+    public int rota;
 
     public ArrayList<PlayableCases> shape=new ArrayList<>();
 

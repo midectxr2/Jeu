@@ -101,6 +101,7 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception{
+        System.out.println("toto");
         Scene scene = new Scene(createContent());
         stage.setTitle("Jeu - Niveau 12");
         stage.setScene(scene);
