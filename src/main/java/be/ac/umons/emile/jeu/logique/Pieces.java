@@ -16,15 +16,15 @@ public class Pieces extends Group {
             shape.add(new PlayableCases(0,1));
             shape.add(new PlayableCases(0,2));
         }else if(value=='b'){
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(2,2));
-            shape.add(new PlayableCases(3,0));
-            shape.add(new PlayableCases(3,1));
-            shape.add(new PlayableCases(3,2));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
+            shape.add(new PlayableCases(1,0));
+            shape.add(new PlayableCases(1,1));
+            shape.add(new PlayableCases(1,2));
 
         }else if(value=='3'){
-            shape.add(new PlayableCases(1,0));
+            shape.add(new PlayableCases(0,0));
         }else if(value=='4'){
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(1,1));
@@ -32,35 +32,36 @@ public class Pieces extends Group {
             shape.add(new PlayableCases(2,0));
             shape.add(new PlayableCases(2,1));
             shape.add(new PlayableCases(2,2));
-            shape.add(new PlayableCases(3,0));
-            shape.add(new PlayableCases(3,1));
-            shape.add(new PlayableCases(3,2));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
 
 
         }else if(value=='5'){
-            shape.add(new PlayableCases(1,0));
+            shape.add(new PlayableCases(0,0));
             shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(2,1));
+            shape.add(new PlayableCases(0,1));
 
         }else if(value=='6'){
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(1,1));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(-1,1));
 
         }else if(value=='7'){
 
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(2,1));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
 
         }else if(value=='8'){
+            shape.add(new PlayableCases(0,0));
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(2,0));
+            shape.add(new PlayableCases(1,1));
             shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(3,1));
+            shape.add(new PlayableCases(1,2));
             shape.add(new PlayableCases(2,2));
-            shape.add(new PlayableCases(3,2));
 
 
         }else if(value=='9'){
@@ -70,63 +71,63 @@ public class Pieces extends Group {
             shape.add(new PlayableCases(1,3));
             shape.add(new PlayableCases(1,4));
             shape.add(new PlayableCases(1,5));
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(2,2));
-            shape.add(new PlayableCases(2,3));
-            shape.add(new PlayableCases(2,4));
-            shape.add(new PlayableCases(2,5));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
+            shape.add(new PlayableCases(0,3));
+            shape.add(new PlayableCases(0,4));
+            shape.add(new PlayableCases(0,5));
 
 
 
-        }else if(value=='c'){
-            shape.add(new PlayableCases(1,0));
-            shape.add(new PlayableCases(1,1));
+        }else if(value=='c'){//10
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
 
         }else if(value=='d'){
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(2,2));
-            shape.add(new PlayableCases(3,0));
-            shape.add(new PlayableCases(3,1));
-            shape.add(new PlayableCases(3,2));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
+            shape.add(new PlayableCases(1,0));
+            shape.add(new PlayableCases(1,1));
             shape.add(new PlayableCases(1,2));
+            shape.add(new PlayableCases(-1,2));
 
         }else if(value=='e'){
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(1,1));
             shape.add(new PlayableCases(1,2));
-            shape.add(new PlayableCases(1,0));
-            shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(1,2));
-            shape.add(new PlayableCases(1,0));
-            shape.add(new PlayableCases(1,1));
+            shape.add(new PlayableCases(-1,0));
+            shape.add(new PlayableCases(-1,1));
 
         }else if(value=='f'){
-            shape.add(new PlayableCases(1,0));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
             shape.add(new PlayableCases(1,1));
             shape.add(new PlayableCases(1,2));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(2,2));
         }else if(value=='g'){
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(1,2));
-            shape.add(new PlayableCases(2,2));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(-1,1));
+            shape.add(new PlayableCases(0,2));
+            shape.add(new PlayableCases(-1,2));
 
-        }else if(value=='h'){
+        }else if(value=='h'){//15
+            shape.add(new PlayableCases(0,0));
             shape.add(new PlayableCases(1,0));
-            shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(1,2));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
 
         }else if(value=='i'){
-            shape.add(new PlayableCases(4,0));
-            shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(2,1));
-            shape.add(new PlayableCases(3,1));
-            shape.add(new PlayableCases(4,1));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(-1,1));
+            shape.add(new PlayableCases(-3,1));
+            shape.add(new PlayableCases(-2,1));
 
         }else if(value=='j'){
             shape.add(new PlayableCases(1,0));
