@@ -13,12 +13,10 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
-import org.w3c.dom.events.Event;
+
 
 
 public class Main extends Application {
-
     public static final int TILE_SIZE = 50;
 
     private Parent createContent() {
