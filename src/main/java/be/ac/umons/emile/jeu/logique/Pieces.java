@@ -1,19 +1,20 @@
 package be.ac.umons.emile.jeu.logique;
 import be.ac.umons.emile.jeu.javafx.Main;
+import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
-public class Pieces extends StackPane {
+public class Pieces extends Group {
     public int rota;
 
     public ArrayList<PlayableCases> shape=new ArrayList<>();
 
     public Pieces(char value) {
         if(value=='a'){
-            shape.add(new PlayableCases(1,0));
-            shape.add(new PlayableCases(1,1));
-            shape.add(new PlayableCases(1,2));
+            shape.add(new PlayableCases(0,0));
+            shape.add(new PlayableCases(0,1));
+            shape.add(new PlayableCases(0,2));
         }else if(value=='b'){
             shape.add(new PlayableCases(2,0));
             shape.add(new PlayableCases(2,1));
@@ -51,7 +52,7 @@ public class Pieces extends StackPane {
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(1,1));
             shape.add(new PlayableCases(2,0));
-            shape.add(new PlayableCases(2,0));
+            shape.add(new PlayableCases(2,1));
 
         }else if(value=='8'){
             shape.add(new PlayableCases(1,0));
@@ -242,24 +243,14 @@ public class Pieces extends StackPane {
             shape.add(new PlayableCases(3,2));
 
     }
-            getChildren().addAll(shape);
-
-    }
-
-
-
-
-    /*rotation de la pièce
-     */
-    public void rotatePiece() {
-        for(PlayableCases c:shape){
-
+        for(int i=0;i<shape.size();i++){
+            getChildren().add(shape.get(i));
         }
+
     }
 
-    /*Fonction à implémenter pour déplacer les pièces
 
-     */
+
 
     public double maxX(){
         double max=0;

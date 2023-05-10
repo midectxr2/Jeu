@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 public class PlayableCases extends Cases{
 
     /*Constructeur des pièces modifiables*/
-    public PlayableCases(double x,double y) {
+    public PlayableCases(int x,int y) {
         super(x, y);
         setFill(Color.BLACK);
     }

@@ -21,9 +21,9 @@ public abstract class Cases extends Rectangle {
         this.piece = piece;
     }
 
-    protected double px;
-    protected double py;
-    public Cases(double x,double y){
+    protected int px;
+    protected int py;
+    public Cases(int x,int y){
         this.px=x;
         this.py=y;
         setWidth(Main.TILE_SIZE);
@@ -32,17 +32,17 @@ public abstract class Cases extends Rectangle {
         setStroke(Color.WHITE);
 
     }
-    public double getPX(){
+    public int getPX(){
         return px;
     }
-    public double getPY(){
+    public int getPY(){
         return py;
     }
-    public void setPX(double x){
+    public void setPX(int x){
         this.px=x;
     }
     /*Setter pour la coordonnée y*/
-    public void setPY(double y){
+    public void setPY(int y){
         this.py=y;
 
     }
