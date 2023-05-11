@@ -1,4 +1,5 @@
 package be.ac.umons.emile.jeu.logique;
+import be.ac.umons.emile.jeu.logique.*;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -13,7 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Board{
+public class Board extends Application{
 
     public int height;
     public int width;
@@ -25,9 +26,9 @@ public class Board{
     public ArrayList<Pieces> pieces = new ArrayList<>();
     public ArrayList<char[]> pos = new ArrayList<>();
 
-    public Board() {
+    public Board()  {
         try {
-            String FileName = "res/level11.txt";
+            String FileName = "res/level/level11.txt";
             // Le fichier d'entrée
             File file = new File(FileName);
             // Créer l'objet File Reader
@@ -86,25 +87,26 @@ public class Board{
     }
 
     public BorderPane createContent() {
+        Board jeu=new Board();
         BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
         grid.setAlignment(Pos.CENTER);
         root.setCenter(grid);
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < jeu.height; i++) {
             RowConstraints row = new RowConstraints(50);
             grid.getRowConstraints().add(row);
         }
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < jeu.width; i++) {
             ColumnConstraints col = new ColumnConstraints(50);
             grid.getColumnConstraints().add(col);
         }
 
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (board[i][j] == 0) {
+        for (int i = 0; i < jeu.height; i++) {
+            for (int j = 0; j < jeu.width; j++) {
+                if (jeu.board[i][j] == 0) {
                     EmptyCases tile = new EmptyCases(j, i);
                     grid.add(tile, j, i);
 
@@ -112,7 +114,7 @@ public class Board{
             }
         }
 
-        for (Pieces c : pieces) {
+        for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
             leftBox.getChildren().add(c);
             drag.makeDraggable(c);
@@ -124,6 +126,19 @@ public class Board{
 
         return root;
     }
+    @Override
+    public void start(Stage stage) throws Exception{
+        Scene scene = new Scene(createContent());
+        stage.setTitle("Jeu");
+        stage.setScene(scene);
+        stage.show();
+        stage.setFullScreen(true);
+    }
+
+    public static void main(String[] args){
+        Application.launch(args);
+    }
+
 
 }
 
