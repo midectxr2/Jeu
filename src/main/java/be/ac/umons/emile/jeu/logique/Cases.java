@@ -20,36 +20,37 @@ public abstract class Cases extends Rectangle {
     public void setPiece(Pieces piece){
         this.piece = piece;
     }
-
-    protected int px;
-    protected int py;
+    private static final int tileSize=50;
+    protected double px;
+    protected double py;
     public Cases(int x,int y){
         this.px=x;
         this.py=y;
-        setWidth(Main.TILE_SIZE);
-        setHeight(Main.TILE_SIZE);
-        relocate(x * Main.TILE_SIZE, y*Main.TILE_SIZE);
+        setWidth(tileSize);
+        setHeight(tileSize);
+        relocate(px * tileSize, py*tileSize);
         setStroke(Color.BLACK);
         setStrokeWidth(1);
 
     }
-    public int getPX(){
+    public double getPX(){
         return px;
     }
-    public int getPY(){
+    public double getPY(){
         return py;
     }
-    public void setPX(int x){
+    public void setPX(double x){
         this.px=x;
     }
     /*Setter pour la coordonnée y*/
-    public void setPY(int y){
+    public void setPY(double y){
         this.py=y;
 
     }
     public abstract boolean isMovable();
 
     protected abstract int[] color();
+
 
 
 

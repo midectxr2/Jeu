@@ -80,7 +80,7 @@ public class Level10 extends Application{
 
     public boolean checkCase(int x, int y, Pieces piece) {
         for (int i = 0; i < piece.shape.size(); i++) {
-            if (board[x + piece.shape.get(i).getPX()][y + piece.shape.get(i).getPY()] != 1) {
+            if (board[x + (int)piece.shape.get(i).getPX()][y + (int)piece.shape.get(i).getPY()] != 1) {
                 return false;
             }
         }
@@ -120,7 +120,7 @@ public class Level10 extends Application{
         for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
             piecePane.getChildren().add(c);
-            drag.makeDraggable(c);
+            drag.makeDraggable(c,grid,root);
             rota.Rotation(c);
 
         }

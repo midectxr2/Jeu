@@ -22,8 +22,8 @@ public class RotationApp extends Rectangle{
     }
 
     public void Rotation(Node pieces){
-        int xc=getCenterX();
-        int yc=getCenterY();
+        double xc=getCenterX();
+        double yc=getCenterY();
         pieces.setOnMouseClicked(new EventHandler<MouseEvent>() {//Permet de Rotate avec juste un clic droit
             @Override
             public void handle(MouseEvent event) {
@@ -35,8 +35,8 @@ public class RotationApp extends Rectangle{
                     for(PlayableCases c:piece.shape){
 
                         System.out.println(c.getPX() + " " + c.getPY()+ " "+ xc+" "+yc);
-                        int x=xc-(c.getPY()-yc);
-                        int y=yc+(c.getPX()-xc);
+                        double x=xc-(c.getPY()-yc);
+                        double y=yc+(c.getPX()-xc);
                         c.setPX(x);
                         c.setPY(y);
 
@@ -54,8 +54,8 @@ public class RotationApp extends Rectangle{
     }
 
 
-    public int maxX(){
-        int max=0;
+    public double maxX(){
+        double max=0;
         for(PlayableCases c:piece.shape){
             if(c.getPX()>max){
                 max=c.getPX();
@@ -64,8 +64,8 @@ public class RotationApp extends Rectangle{
         return max;
     }
 
-    public int minX(){
-        int min;
+    public double minX(){
+        double min;
         min=piece.shape.get(0).getPX();
         for(PlayableCases c:piece.shape){
             if(c.getPX()<min){
@@ -74,8 +74,8 @@ public class RotationApp extends Rectangle{
         }
         return min;
     }
-    public int maxY(){
-        int max=0;
+    public double maxY(){
+        double max=0;
         for(PlayableCases c:piece.shape){
             if(c.getPY()>max){
                 max=c.getPY();
@@ -84,8 +84,8 @@ public class RotationApp extends Rectangle{
         return max;
     }
 
-    public int minY(){
-       int min;
+    public double minY(){
+       double min;
         min=piece.shape.get(0).getPY();
         for(PlayableCases c:piece.shape){
             if(c.getPY()<min){
@@ -95,11 +95,11 @@ public class RotationApp extends Rectangle{
         return min;
 
     }
-    public int getCenterX(){
+    public double getCenterX(){
         return (minX()+maxX())/2;
     }
 
-    public int getCenterY(){
+    public double getCenterY(){
         return (minY()+maxY())/2;
     }
 

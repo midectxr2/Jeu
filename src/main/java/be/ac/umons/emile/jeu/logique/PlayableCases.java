@@ -1,6 +1,7 @@
 package be.ac.umons.emile.jeu.logique;
 
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class PlayableCases extends Cases{
 

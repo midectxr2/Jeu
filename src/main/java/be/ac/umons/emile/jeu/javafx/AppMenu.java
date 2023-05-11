@@ -1,7 +1,8 @@
 package be.ac.umons.emile.jeu.javafx;
-
+import be.ac.umons.emile.jeu.logique.*;
 import be.ac.umons.emile.jeu.logique.DraggableApp;
 import be.ac.umons.emile.jeu.logique.EmptyCases;
+import be.ac.umons.emile.jeu.logique.Levels.*;
 import be.ac.umons.emile.jeu.logique.Pieces;
 import be.ac.umons.emile.jeu.logique.RotationApp;
 import javafx.application.Application;
@@ -129,7 +130,7 @@ public class AppMenu extends Application {
                 });
 
                 level1.setOnMouseClicked(event1 -> {
-                    Main javafxApp = new Main();
+                    Level1 javafxApp = new Level1();
                     try {
                         javafxApp.init();
                     } catch (Exception e) {

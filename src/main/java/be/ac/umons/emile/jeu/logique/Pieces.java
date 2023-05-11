@@ -9,7 +9,7 @@ public class Pieces extends Group {
     public int rota;
 
     public ArrayList<PlayableCases> shape=new ArrayList<>();
-
+    Rectangle r=new Rectangle();
     public Pieces(char value) {
         if(value=='a'){
             shape.add(new PlayableCases(0,0));
