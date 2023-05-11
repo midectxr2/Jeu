@@ -1,22 +1,11 @@
 package be.ac.umons.emile.jeu.javafx;
-import be.ac.umons.emile.jeu.logique.*;
-import be.ac.umons.emile.jeu.logique.DraggableApp;
-import be.ac.umons.emile.jeu.logique.EmptyCases;
-import be.ac.umons.emile.jeu.logique.Levels.*;
-import be.ac.umons.emile.jeu.logique.Pieces;
-import be.ac.umons.emile.jeu.logique.RotationApp;
+import be.ac.umons.emile.jeu.logique.Level;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -130,7 +119,7 @@ public class AppMenu extends Application {
                 });
 
                 level1.setOnMouseClicked(event1 -> {
-                    Level1 javafxApp = new Level1();
+                    Level javafxApp = new Level("res/level/level11.txt");
                     try {
                         javafxApp.init();
                     } catch (Exception e) {

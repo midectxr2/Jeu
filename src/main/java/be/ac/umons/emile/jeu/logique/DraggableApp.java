@@ -42,15 +42,16 @@ public class DraggableApp {
             public void handle(MouseEvent event){
                 MouseButton button=event.getButton();
                 if(button==MouseButton.PRIMARY) {
-
+                    Bounds boundsInParent = grid.getBoundsInParent();
+                    double x = boundsInParent.getMinX();
+                    double y = boundsInParent.getMinY();
+                    for(PlayableCases c:piece2.shape) {
+                        c.setX(50 / 2 + 50 * x);
+                        c.setY(50 / 2 + 50 * y);
+                    }
                 }
             }
         });
-
-
-
-
-
 
     }
 }

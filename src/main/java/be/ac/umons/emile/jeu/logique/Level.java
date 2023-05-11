@@ -1,9 +1,4 @@
-package be.ac.umons.emile.jeu.logique.Levels;
-
-import be.ac.umons.emile.jeu.logique.DraggableApp;
-import be.ac.umons.emile.jeu.logique.EmptyCases;
-import be.ac.umons.emile.jeu.logique.Pieces;
-import be.ac.umons.emile.jeu.logique.RotationApp;
+package be.ac.umons.emile.jeu.logique;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,9 +11,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Level11 extends Application{
+public class Level extends Application{
+
     public int height;
     public int width;
+    String fileName;
     private int x = 1;
     public double[][] board;
     FlowPane piecePane=new FlowPane();
@@ -27,11 +24,12 @@ public class Level11 extends Application{
     public ArrayList<Pieces> pieces = new ArrayList<>();
     public ArrayList<char[]> pos = new ArrayList<>();
 
-    public Level11()  {
+    public Level(String fileName)  {
+        this.fileName=fileName;
         try {
-            String FileName = "res/level/level21.txt";
+
             // Le fichier d'entrée
-            File file = new File(FileName);
+            File file = new File(this.fileName);
             // Créer l'objet File Reader
             FileReader fr = new FileReader(file);
             // Créer l'objet BufferedReader
@@ -44,12 +42,12 @@ public class Level11 extends Application{
                 pos.add(tab);
             }
             fr.close();
-            height = pos.get(0)[1] - 48;
-            width = pos.get(0)[0] - 48;
+            height = pos.get(0)[1] - '0';//tableau de 9x9 max faire split "-" si plus grand;
+            width = pos.get(0)[0] - '0';
             board = new double[height][width];
             for (int i = 1; i < height + 1; i++) {
                 for (int j = 0; j < width; j++) {
-                    board[i - 1][j] = pos.get(i)[j] - 48;
+                    board[i - 1][j] = pos.get(i)[j] - '0';
                 }
             }
             for (int i = height + 1; i < pos.size(); i++) {
@@ -88,7 +86,7 @@ public class Level11 extends Application{
     }
 
     public BorderPane createContent() {
-        Level11 jeu=new Level11();
+        Level jeu=new Level(fileName);
         BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
@@ -119,13 +117,13 @@ public class Level11 extends Application{
 
         for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
-            piecePane.getChildren().add(c);
+            root.getChildren().add(c);
             drag.makeDraggable(c,grid,root);
             rota.Rotation(c);
 
         }
 
-        root.setRight(piecePane);
+
 
         return root;
     }
@@ -142,4 +140,6 @@ public class Level11 extends Application{
         Application.launch(args);
     }
 
+
 }
+

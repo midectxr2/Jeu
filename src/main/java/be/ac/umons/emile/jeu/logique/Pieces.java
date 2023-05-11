@@ -1,5 +1,5 @@
 package be.ac.umons.emile.jeu.logique;
-import be.ac.umons.emile.jeu.javafx.Main;
+
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -9,7 +9,6 @@ public class Pieces extends Group {
     public int rota;
 
     public ArrayList<PlayableCases> shape=new ArrayList<>();
-    Rectangle r=new Rectangle();
     public Pieces(char value) {
         if(value=='a'){
             shape.add(new PlayableCases(0,0));
