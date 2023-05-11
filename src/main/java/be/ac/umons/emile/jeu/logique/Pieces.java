@@ -100,7 +100,7 @@ public class Pieces extends Group {
             shape.add(new PlayableCases(1,0));
             shape.add(new PlayableCases(1,1));
             shape.add(new PlayableCases(1,2));
-            shape.add(new PlayableCases(-1,0));
+            shape.add(new PlayableCases(-1,2));
             shape.add(new PlayableCases(-1,1));
 
         }else if(value=='f'){

@@ -29,7 +29,8 @@ public abstract class Cases extends Rectangle {
         setWidth(Main.TILE_SIZE);
         setHeight(Main.TILE_SIZE);
         relocate(x * Main.TILE_SIZE, y*Main.TILE_SIZE);
-        setStroke(Color.WHITE);
+        setStroke(Color.BLACK);
+        setStrokeWidth(1);
 
     }
     public int getPX(){

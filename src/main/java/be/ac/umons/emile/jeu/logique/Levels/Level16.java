@@ -1,9 +1,11 @@
-package be.ac.umons.emile.jeu.logique;
-import be.ac.umons.emile.jeu.logique.*;
+package be.ac.umons.emile.jeu.logique.Levels;
+
+import be.ac.umons.emile.jeu.logique.DraggableApp;
+import be.ac.umons.emile.jeu.logique.EmptyCases;
+import be.ac.umons.emile.jeu.logique.Pieces;
+import be.ac.umons.emile.jeu.logique.RotationApp;
 import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -14,21 +16,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Board extends Application{
-
-    public int height;
+public class Level16 extends Application{public int height;
     public int width;
     private int x = 1;
     public double[][] board;
     VBox leftBox = new VBox();
+    FlowPane piecePane= new FlowPane();
     private DraggableApp drag = new DraggableApp();
     private RotationApp rota;
     public ArrayList<Pieces> pieces = new ArrayList<>();
     public ArrayList<char[]> pos = new ArrayList<>();
 
-    public Board()  {
+    public Level16()  {
         try {
-            String FileName = "res/level/level11.txt";
+            String FileName = "res/level/level26.txt";
             // Le fichier d'entrée
             File file = new File(FileName);
             // Créer l'objet File Reader
@@ -87,12 +88,14 @@ public class Board extends Application{
     }
 
     public BorderPane createContent() {
-        Board jeu=new Board();
+        Level16 jeu=new Level16();
         BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
         grid.setAlignment(Pos.CENTER);
         root.setCenter(grid);
+        piecePane.setHgap(10);
+        piecePane.setVgap(5);
 
         for (int i = 0; i < jeu.height; i++) {
             RowConstraints row = new RowConstraints(50);
@@ -116,13 +119,13 @@ public class Board extends Application{
 
         for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
-            leftBox.getChildren().add(c);
+            piecePane.getChildren().add(c);
             drag.makeDraggable(c);
             rota.Rotation(c);
 
         }
 
-        root.setRight(leftBox);
+        root.setRight(piecePane);
 
         return root;
     }
@@ -139,6 +142,4 @@ public class Board extends Application{
         Application.launch(args);
     }
 
-
 }
-

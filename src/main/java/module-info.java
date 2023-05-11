@@ -10,4 +10,6 @@ module be.ac.umons.emile.jeu {
     exports be.ac.umons.emile.jeu.javafx;
     opens be.ac.umons.emile.jeu.logique to javafx.fxml;
     exports be.ac.umons.emile.jeu.logique;
+    exports be.ac.umons.emile.jeu.logique.Levels;
+    opens be.ac.umons.emile.jeu.logique.Levels to javafx.fxml;
 }

@@ -7,7 +7,7 @@ public class PlayableCases extends Cases{
     /*Constructeur des pièces modifiables*/
     public PlayableCases(int x,int y) {
         super(x, y);
-        setFill(Color.BLACK);
+        setFill(Color.DODGERBLUE);
     }
 
     /*Permet de savoir si la case peut-être déplacée/modifiée ou non*/
