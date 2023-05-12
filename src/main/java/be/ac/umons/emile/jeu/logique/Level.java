@@ -21,11 +21,16 @@ public class Level extends Application{
     FlowPane piecePane=new FlowPane();
     private DraggableApp drag = new DraggableApp();
     private RotationApp rota;
+    private int gridHeight;
+    private int gridWidth;
     public ArrayList<Pieces> pieces = new ArrayList<>();
     public ArrayList<char[]> pos = new ArrayList<>();
 
-    public Level(String fileName)  {
-        this.fileName=fileName;
+    private ArrayList<PlayableCases> shape=new ArrayList<>();
+
+    public Level(String path)  {
+        this.fileName=path;
+        int readLine=0;
         try {
 
             // Le fichier d'entrée
@@ -49,14 +54,26 @@ public class Level extends Application{
                 for (int j = 0; j < width; j++) {
                     board[i - 1][j] = pos.get(i)[j] - '0';
                 }
+                readLine=i;
             }
-            for (int i = height + 1; i < pos.size(); i++) {
-                for (int j = 0; j < pos.get(i).length; j++) {
-                    pieces.add(new Pieces(pos.get(i)[j]));
+            gridWidth=width;
+            gridHeight=height;
+            while(readLine<pos.size()-1){
+                readLine++;
+                shape.clear();
+                height=pos.get(readLine)[1]-'0';
+                width=pos.get(readLine)[0]-'0';
+                for(int i=0; i<height;i++){
+                    readLine++;
+                    for(int j=0;j<width;j++){
+                        if(pos.get(readLine)[j]=='1') {
+                            shape.add(new PlayableCases(j,i));
+                        }
+                    }
                 }
+                pieces.add(new Pieces(shape));
+
             }
-
-
         } catch (IOException e) {
             System.out.print("Gros con");
 
@@ -95,18 +112,18 @@ public class Level extends Application{
         piecePane.setHgap(10);
         piecePane.setVgap(5);
 
-        for (int i = 0; i < jeu.height; i++) {
+        for (int i = 0; i < jeu.gridHeight; i++) {
             RowConstraints row = new RowConstraints(50);
             grid.getRowConstraints().add(row);
         }
-        for (int i = 0; i < jeu.width; i++) {
+        for (int i = 0; i < gridWidth; i++) {
             ColumnConstraints col = new ColumnConstraints(50);
             grid.getColumnConstraints().add(col);
         }
 
 
-        for (int i = 0; i < jeu.height; i++) {
-            for (int j = 0; j < jeu.width; j++) {
+        for (int i = 0; i < gridHeight; i++) {
+            for (int j = 0; j < gridWidth; j++) {
                 if (jeu.board[i][j] == 0) {
                     EmptyCases tile = new EmptyCases(j, i);
                     grid.add(tile, j, i);
@@ -117,14 +134,15 @@ public class Level extends Application{
 
         for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
-            root.getChildren().add(c);
+            piecePane.getChildren().add(c);
             drag.makeDraggable(c,grid,root);
             rota.Rotation(c);
+            System.out.println(pieces.size());
 
         }
 
 
-
+        root.setRight(piecePane);
         return root;
     }
     @Override
