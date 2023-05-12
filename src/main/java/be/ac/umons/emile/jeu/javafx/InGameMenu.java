@@ -152,11 +152,6 @@ public class InGameMenu extends Application {
             Button level13 = new Button("LEVEL13");
             Button level14 = new Button("LEVEL14");
 
-
-
-
-
-
             menu.getChildren().addAll(resume, exit, levels);
             menu1.getChildren().addAll(back, level11, level12, level13, level14);
 
