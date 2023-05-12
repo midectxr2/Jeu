@@ -102,21 +102,20 @@ public class Level extends Application{
         return true;
     }
 
-    public BorderPane createContent() {
+    public Pane createContent() {
         Level jeu=new Level(fileName);
-        BorderPane root = new BorderPane();
+        Pane root = new Pane();
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
-        grid.setAlignment(Pos.CENTER);
-        root.setCenter(grid);
         piecePane.setHgap(10);
         piecePane.setVgap(5);
+        root.getChildren().add(grid);
 
         for (int i = 0; i < jeu.gridHeight; i++) {
             RowConstraints row = new RowConstraints(50);
             grid.getRowConstraints().add(row);
         }
-        for (int i = 0; i < gridWidth; i++) {
+        for (int i = 0; i < jeu.gridWidth; i++) {
             ColumnConstraints col = new ColumnConstraints(50);
             grid.getColumnConstraints().add(col);
         }
@@ -134,15 +133,14 @@ public class Level extends Application{
 
         for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
-            piecePane.getChildren().add(c);
             drag.makeDraggable(c,grid,root);
-            rota.Rotation(c);
-            System.out.println(pieces.size());
+            rota.Rotation(c);;
+            root.getChildren().add(c);
 
         }
 
 
-        root.setRight(piecePane);
+
         return root;
     }
     @Override

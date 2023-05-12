@@ -42,13 +42,18 @@ public class DraggableApp {
             public void handle(MouseEvent event){
                 MouseButton button=event.getButton();
                 if(button==MouseButton.PRIMARY) {
-                    Bounds boundsInParent = grid.getBoundsInParent();
-                    double x = boundsInParent.getMinX();
-                    double y = boundsInParent.getMinY();
-                    for(PlayableCases c:piece2.shape) {
-                        c.setX(50 / 2 + 50 * x);
-                        c.setY(50 / 2 + 50 * y);
-                    }
+                    double cellWidth = grid.getWidth() / grid.getColumnCount();
+                    double cellHeight = grid.getHeight() / grid.getRowCount();
+                    double pieceCenterX = piece2.getBoundsInLocal().getMaxX() - piece2.getBoundsInLocal().getMinX() / 2;
+                    double pieceCenterY = piece2.getBoundsInLocal().getMaxY() - piece2.getBoundsInLocal().getMinY() / 2;
+
+                    int pieceColumn = (int) Math.round((pieceCenterX - event.getSceneX()) / cellWidth);
+                    int pieceRow = (int) Math.round((pieceCenterY - event.getSceneY()) / cellHeight);
+                    double nearestCellX = grid.getLayoutX() + pieceColumn * cellWidth;
+                    double nearestCellY = grid.getLayoutY() + pieceRow * cellHeight;
+
+                    piece2.setLayoutX(nearestCellX - piece2.getBoundsInLocal().getMaxX() / 2);
+                    piece2.setLayoutY(nearestCellY - piece2.getBoundsInLocal().getMaxY() / 2);
                 }
             }
         });

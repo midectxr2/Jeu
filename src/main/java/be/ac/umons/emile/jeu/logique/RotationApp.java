@@ -33,13 +33,13 @@ public class RotationApp extends Rectangle{
 
                     for(PlayableCases c:piece.shape){
 
-                        System.out.println(c.getPX() + " " + c.getPY()+ " "+ xc+" "+yc);
+
                         int x=xc-(c.getPY()-yc);
                         int y=yc+(c.getPX()-xc);
                         c.setPX(x);
                         c.setPY(y);
 
-                        System.out.println(c.getPX() + " " + c.getPY());
+
                     }
                 }
             }
