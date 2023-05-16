@@ -49,8 +49,8 @@ public class DraggableApp {
 
                     int pieceColumn = (int) Math.round((pieceCenterX - event.getSceneX()) / cellWidth);
                     int pieceRow = (int) Math.round((pieceCenterY - event.getSceneY()) / cellHeight);
-                    double nearestCellX = grid.getLayoutX() + pieceColumn * cellWidth;
-                    double nearestCellY = grid.getLayoutY() + pieceRow * cellHeight;
+                    double nearestCellX = grid.getBoundsInLocal().getMinX() + pieceColumn * cellWidth;
+                    double nearestCellY = grid.getBoundsInLocal().getMinY() + pieceRow * cellHeight;
 
                     piece2.setLayoutX(nearestCellX - piece2.getBoundsInLocal().getMaxX() / 2);
                     piece2.setLayoutY(nearestCellY - piece2.getBoundsInLocal().getMaxY() / 2);

@@ -1,11 +1,7 @@
 package be.ac.umons.emile.jeu.logique;
-import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Button;
-import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 
 
@@ -14,15 +10,15 @@ import javafx.scene.shape.Rectangle;
 public class RotationApp extends Rectangle{
 
     private Pieces piece;
-    private Group groupPiece;
 
     public RotationApp(Pieces piece){
         this.piece=piece;
     }
 
-    public void Rotation(Node pieces){
-        int xc=getCenterX();
-        int yc=getCenterY();
+    public void Rotation(Pieces pieces){
+        pieces=piece;
+        double xc=getCenterX();
+        double yc=getCenterY();
         pieces.setOnMouseClicked(new EventHandler<MouseEvent>() {//Permet de Rotate avec juste un clic droit
             @Override
             public void handle(MouseEvent event) {
@@ -30,31 +26,19 @@ public class RotationApp extends Rectangle{
                 if(button==MouseButton.SECONDARY){
                     piece.rota=(piece.rota +90)%360;
                     piece.setRotate(piece.rota);
-
                     for(PlayableCases c:piece.shape){
-
-
-                        int x=xc-(c.getPY()-yc);
-                        int y=yc+(c.getPX()-xc);
+                        double x=xc-(c.getPY()-yc);
+                        double y=yc+(c.getPX()-xc);
                         c.setPX(x);
                         c.setPY(y);
-
 
                     }
                 }
             }
         });
     }
-
-    public void addPiece(Pieces piece){
-        for(int i=0;i<piece.shape.size();i++){
-            groupPiece.getChildren().add(piece.shape.get(i));
-        }
-    }
-
-
-    public int maxX(){
-        int max=0;
+    public double maxX(){
+        double max=0;
         for(PlayableCases c:piece.shape){
             if(c.getPX()>max){
                 max=c.getPX();
@@ -63,18 +47,18 @@ public class RotationApp extends Rectangle{
         return max;
     }
 
-    public int minX(){
-        int min;
+    public double minX(){
+        double min;
         min=piece.shape.get(0).getPX();
         for(PlayableCases c:piece.shape){
-            if(c.getPX()<min){
+            if(c.getPX()>min){
                 min=c.getPX();
             }
         }
         return min;
     }
-    public int maxY(){
-        int max=0;
+    public double maxY(){
+        double max=0;
         for(PlayableCases c:piece.shape){
             if(c.getPY()>max){
                 max=c.getPY();
@@ -83,22 +67,21 @@ public class RotationApp extends Rectangle{
         return max;
     }
 
-    public int minY(){
-       int min;
+    public double minY(){
+        double min;
         min=piece.shape.get(0).getPY();
         for(PlayableCases c:piece.shape){
-            if(c.getPY()<min){
+            if(c.getPY()>min){
                 min=c.getPY();
             }
         }
         return min;
-
     }
-    public int getCenterX(){
+    public double getCenterX(){
         return (minX()+maxX())/2;
     }
 
-    public int getCenterY(){
+    public double getCenterY(){
         return (minY()+maxY())/2;
     }
 
