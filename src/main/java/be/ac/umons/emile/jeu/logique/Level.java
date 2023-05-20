@@ -1,6 +1,5 @@
 package be.ac.umons.emile.jeu.logique;
 import be.ac.umons.emile.jeu.javafx.AppMenu;
-import be.ac.umons.emile.jeu.javafx.InGameMenu;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -19,10 +18,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+
 import java.util.ArrayList;
 
 public class Level extends Application{
@@ -46,22 +43,17 @@ public class Level extends Application{
         this.fileName=path;
         int readLine=0;
         try {
-
-            // Le fichier d'entrée
             File file = new File(this.fileName);
-            // Créer l'objet File Reader
             FileReader fr = new FileReader(file);
-            // Créer l'objet BufferedReader
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
-                char[] tab = new char[line.length()];
-                // ajoute la ligne au buffer
+                char[] tab;
                 tab = line.toCharArray();
                 pos.add(tab);
             }
             fr.close();
-            height = pos.get(0)[1] - '0';//tableau de 9x9 max faire split "-" si plus grand;
+            height = pos.get(0)[1] - '0';
             width = pos.get(0)[0] - '0';
             board = new double[height][width];
             for (int i = 1; i < height + 1; i++) {
@@ -89,7 +81,7 @@ public class Level extends Application{
 
             }
         } catch (IOException e) {
-            System.out.print("Gros con");
+            e.printStackTrace();
 
         }
 
@@ -116,14 +108,55 @@ public class Level extends Application{
         return true;
     }
 
+    public void save(ArrayList<Pieces> pieces){
+        try{
+            BufferedWriter writer= new BufferedWriter(new FileWriter("Level_save.txt"));
+            for(Pieces c: pieces){
+                String position= c.getLayoutX()+"-"+c.getLayoutY()+c.rota;
+                writer.write(position);
+                writer.newLine();
+            }
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void load(){
+        ArrayList<Pieces> piecePosition=new ArrayList<>();
+        try {
+            File file = new File("Level_save.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                String tab;
+                tab = line;
+                String[] words=tab.split("-");
+                for(Pieces c:pieces){
+                    c.setLayoutX(Integer.parseInt(words[0]));
+                    c.setLayoutY(Integer.parseInt(words[1]));
+                    c.setRotate(Integer.parseInt(words[2]));
+                }
+            }
+            fr.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
     public Pane createContent() {
         Level jeu=new Level(fileName);
-        Pane root = new Pane();
+        BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
+        grid.setAlignment(Pos.CENTER);
+        root.setCenter(grid);
         piecePane.setHgap(10);
-        piecePane.setVgap(5);
-        root.getChildren().add(grid);
+        piecePane.setVgap(5);;
         gamemenu = new GameMenu();
         gamemenu.setVisible(false);
 
@@ -150,14 +183,19 @@ public class Level extends Application{
         for (Pieces c : jeu.pieces) {
             rota = new RotationApp(c);
             drag.makeDraggable(c,grid,root);
-            rota.Rotation(c);;
+            rota.Rotation(c);
+            c.setLayoutX(550);
+            c.setLayoutY(550);
             root.getChildren().add(c);
-
         }
 
 
         root.getChildren().add(gamemenu);
         return root;
+    }
+
+    protected void saveLevel(String path){
+
     }
     @Override
     public void start(Stage stage) throws Exception{

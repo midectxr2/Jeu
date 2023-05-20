@@ -8,11 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 
 public class DraggableApp {
     public double startX;
     public double startY;
-    public void makeDraggable(Pieces piece2,GridPane grid,Pane root){
+    public void makeDraggable(Pieces piece2, GridPane grid, Pane root){
         piece2.setOnMousePressed(new EventHandler<MouseEvent>() {//Permet de drag en maintenant seulement le clic gauche
             @Override
             public void handle(MouseEvent event) {
@@ -37,23 +38,15 @@ public class DraggableApp {
             }
 
         });
-        piece2.setOnMouseReleased(new EventHandler<MouseEvent>(){
+        grid.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event){
                 MouseButton button=event.getButton();
                 if(button==MouseButton.PRIMARY) {
-                    double cellWidth = grid.getWidth() / grid.getColumnCount();
-                    double cellHeight = grid.getHeight() / grid.getRowCount();
-                    double pieceCenterX = piece2.getBoundsInLocal().getMaxX() - piece2.getBoundsInLocal().getMinX() / 2;
-                    double pieceCenterY = piece2.getBoundsInLocal().getMaxY() - piece2.getBoundsInLocal().getMinY() / 2;
+                    Integer column=GridPane.getColumnIndex(grid);
+                    Integer row=GridPane.getRowIndex(grid);
+                    System.out.println(column + " "+row);
 
-                    int pieceColumn = (int) Math.round((pieceCenterX - event.getSceneX()) / cellWidth);
-                    int pieceRow = (int) Math.round((pieceCenterY - event.getSceneY()) / cellHeight);
-                    double nearestCellX = grid.getBoundsInLocal().getMinX() + pieceColumn * cellWidth;
-                    double nearestCellY = grid.getBoundsInLocal().getMinY() + pieceRow * cellHeight;
-
-                    piece2.setLayoutX(nearestCellX - piece2.getBoundsInLocal().getMaxX() / 2);
-                    piece2.setLayoutY(nearestCellY - piece2.getBoundsInLocal().getMaxY() / 2);
                 }
             }
         });
