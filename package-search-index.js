@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"be.ac.umons.emile.jeu","l":"be.ac.umons.emile.jeu.javafx"},{"m":"be.ac.umons.emile.jeu","l":"be.ac.umons.emile.jeu.logique"}];updateSearchResults();
