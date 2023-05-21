@@ -18,14 +18,11 @@ public class Pieces extends Group {
 
     }
 
-
-
-
     public double maxX(){
         double max=0;
         for(PlayableCases c:shape){
-            if(c.getX()>max){
-                max=c.getX();
+            if(c.getPX()>max){
+                max=c.getPX();
             }
         }
         return max;
@@ -33,10 +30,10 @@ public class Pieces extends Group {
 
     public double minX(){
         double min;
-        min=shape.get(0).getX();
+        min=shape.get(0).getPX();
         for(PlayableCases c:shape){
-            if(c.getX()>min){
-                min=c.getX();
+            if(c.getPX()<min){
+                min=c.getPX();
             }
         }
         return min;
@@ -44,8 +41,8 @@ public class Pieces extends Group {
     public double maxY(){
         double max=0;
         for(PlayableCases c:shape){
-            if(c.getY()>max){
-                max=c.getY();
+            if(c.getPY()>max){
+                max=c.getPY();
             }
         }
         return max;
@@ -53,10 +50,10 @@ public class Pieces extends Group {
 
     public double minY(){
         double min;
-        min=shape.get(0).getY();
+        min=shape.get(0).getPY();
         for(PlayableCases c:shape){
-            if(c.getY()>min){
-                min=c.getX();
+            if(c.getPY()<min){
+                min=c.getPY();
             }
         }
         return min;
@@ -74,8 +71,8 @@ public class Pieces extends Group {
         double yc=getCenterY();
 
         for(PlayableCases c:shape){
-            c.setX(xc-(c.getY()-yc));
-            c.setY(yc+(c.getX()-xc));
+            c.setX(xc-(c.getPY()-yc));
+            c.setY(yc+(c.getPX()-xc));
         }
 
     }

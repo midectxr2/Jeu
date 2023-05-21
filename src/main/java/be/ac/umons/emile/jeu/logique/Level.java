@@ -24,10 +24,11 @@ import java.util.ArrayList;
 
 public class Level extends Application{
 
+    private double x;
+    private double y;
     public int height;
     public int width;
     String fileName;
-    private int x = 1;
     public double[][] board;
     FlowPane piecePane=new FlowPane();
     private DraggableApp drag = new DraggableApp();
@@ -148,6 +149,13 @@ public class Level extends Application{
 
     }
 
+    private void display(Pieces piece,BorderPane root){
+        piecePane.setHgap(10);
+        piecePane.setVgap(5);
+        piecePane.getChildren().add(piece);
+        root.setRight(piecePane);
+    }
+
     public Pane createContent() {
         Level jeu=new Level(fileName);
         BorderPane root = new BorderPane();
@@ -155,8 +163,6 @@ public class Level extends Application{
         grid.setGridLinesVisible(true);
         grid.setAlignment(Pos.CENTER);
         root.setCenter(grid);
-        piecePane.setHgap(10);
-        piecePane.setVgap(5);;
         gamemenu = new GameMenu();
         gamemenu.setVisible(false);
 
@@ -184,9 +190,7 @@ public class Level extends Application{
             rota = new RotationApp(c);
             drag.makeDraggable(c,grid,root);
             rota.Rotation(c);
-            c.setLayoutX(550);
-            c.setLayoutY(550);
-            root.getChildren().add(c);
+            display(c,root);
         }
 
 
@@ -194,9 +198,6 @@ public class Level extends Application{
         return root;
     }
 
-    protected void saveLevel(String path){
-
-    }
     @Override
     public void start(Stage stage) throws Exception{
         Scene scene = new Scene(createContent());

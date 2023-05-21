@@ -3,16 +3,14 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
-
-
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 
 application {
-    mainModule = 'be.ac.umons.emile.jeu.javafx'
-    mainClass = 'be.ac.umons.emile.jeu.javafx.Main'
+    mainClassName = 'be.ac.umons.emile.jeu.javafx.AppMenu'
 }
 
 javafx {
@@ -21,6 +19,7 @@ javafx {
 }
 
 dependencies {
-
-    }
-
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+}
