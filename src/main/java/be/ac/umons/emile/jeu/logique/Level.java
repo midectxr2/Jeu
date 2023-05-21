@@ -88,15 +88,36 @@ public class Level extends Application{
 
     }
 
-    public boolean hasValue(double[][] board) {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+    public boolean hasValue() {
+
+        for(Pieces pieces1 : pieces) {
+            double startRow = pieces1.minY();
+            double endRow = pieces1.maxY();
+            double startCol = pieces1.minX();
+            double endCol = pieces1.maxX();
+            //on regarde si les pièces sont bien à l'intérieur de la grille
+            if (startRow < 0 || endRow >= gridHeight || startCol < 0 || endCol >= gridWidth) {
+                return false;
+            }
+        }
+
+        //on regarde si toutes les cases de la grille sont chevauchées par les pièces
+        for (int i = 0; i <= gridWidth; i++) {
+            for (int j = 0; j <= gridHeight; j++) {
+                if (board[i][j] != 1) {
+                    return false;
+                }
+            }
+        }
+        for (int i = 0; i <= gridWidth; i++) {
+            for (int j = 0; j <= gridHeight; j++) {
                 if (board[i][j] == 1) {
                     return true;
                 }
             }
         }
-        return false;
+
+        return true;
     }
 
 
@@ -109,13 +130,18 @@ public class Level extends Application{
         return true;
     }
 
-    public void save(ArrayList<Pieces> pieces){
+    public void save(String path){
         try{
-            BufferedWriter writer= new BufferedWriter(new FileWriter("Level_save.txt"));
+            BufferedWriter writer= new BufferedWriter(new FileWriter(path));
             for(Pieces c: pieces){
-                String position= c.getLayoutX()+"-"+c.getLayoutY()+c.rota;
+                String x=""+c.getBoundsInParent();
+                String y=""+ c.getLayoutY();
+                String rota="" + c.rota;
+
+                String position= x+"-"+y+"-"+rota;
                 writer.write(position);
                 writer.newLine();
+                writer.close();
             }
 
         }catch(IOException e){
@@ -123,10 +149,10 @@ public class Level extends Application{
         }
     }
 
-    public void load(){
+    public void load(String path){
         ArrayList<Pieces> piecePosition=new ArrayList<>();
         try {
-            File file = new File("Level_save.txt");
+            File file = new File(path);
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
@@ -193,8 +219,32 @@ public class Level extends Application{
             display(c,root);
         }
 
+        Button finish = new Button("Finish");
+        finish.setVisible(false);
+        finish.setTranslateX(1600);
+        finish.setTranslateY(1000);
+        if(hasValue() == true){
+            finish.setVisible(true);
+        }
 
-        root.getChildren().add(gamemenu);
+        finish.setOnMouseClicked(event -> {
+            AppMenu javafxApp = new AppMenu();
+            try {
+                javafxApp.init();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                javafxApp.start(new Stage());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.hide();
+        });
+
+        root.getChildren().addAll(gamemenu, finish);
         return root;
     }
 
@@ -232,20 +282,23 @@ public class Level extends Application{
     private class GameMenu extends Parent {
         public GameMenu() {
 
+            //on crée les conteneurs pour les boutons
             VBox menu = new VBox(10);
             VBox menu1 = new VBox(10);
             VBox menu2 = new VBox(10);
 
-            menu.setTranslateX(100);
+            //on place les conteneurs pour qu'il soit au centre
+            menu.setTranslateX(835);
             menu.setTranslateY(200);
-            menu1.setTranslateX(50);
+            menu1.setTranslateX(835);
             menu1.setTranslateY(200);
-            menu2.setTranslateX(50);
+            menu2.setTranslateX(835);
             menu2.setTranslateY(200);
 
             final int offsett = 400;
             menu1.setTranslateX(offsett);
 
+            //bouton resume pour fermer le menu
             Button resume = new Button("RESUME");
             resume.setOnMouseClicked(event -> {
                 FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -255,7 +308,7 @@ public class Level extends Application{
                 ft.play();
             });
 
-
+            //bouton exit pour quitter le niveau et revenir au menu principale
             Button exit = new Button("EXIT");
             exit.setOnMouseClicked(event -> {
                 AppMenu javafxApp = new AppMenu();
@@ -274,6 +327,7 @@ public class Level extends Application{
                 stage.hide();
             });
 
+            //bouton level pour ouvrir un menu avec les boutons level pour changer de niveau sans revenir au menu principal
             Button levels = new Button("LEVELS");
             levels.setOnMouseClicked(event -> {
                 getChildren().add(menu1);
@@ -314,6 +368,7 @@ public class Level extends Application{
                 });
             });
 
+            //bouton qui permet de montrer les boutons des niveaux suivants
             Button next = new Button("Next");
             next.setOnMouseClicked(event -> {
                 getChildren().add(menu2);
@@ -332,6 +387,7 @@ public class Level extends Application{
                 });
             });
 
+            //bouton qui permet de montrer les boutons des niveaux précédents
             Button previous = new Button("Previous");
             previous.setOnMouseClicked(event -> {
                 getChildren().add(menu1);
@@ -350,394 +406,33 @@ public class Level extends Application{
                 });
             });
 
-            Button level1 = new Button("LEVEL 1");
-            Button level2 = new Button("LEVEL 2");
-            Button level3 = new Button("LEVEL 3");
-            Button level4 = new Button("LEVEL 4");
-            Button level5 = new Button("LEVEL 5");
-            Button level6 = new Button("LEVEL 6");
-            Button level7 = new Button("LEVEL 7");
-            Button level8 = new Button("LEVEL 8");
-            Button level9 = new Button("LEVEL 9");
-            Button level10 = new Button("LEVEL 10");
-            Button level11 = new Button("LEVEL 11");
-            Button level12 = new Button("LEVEL 12");
-            Button level13 = new Button("LEVEL 13");
-            Button level14 = new Button("LEVEL 14");
-            Button level15 = new Button("LEVEL 15");
-            Button level16 = new Button("LEVEL 16");
-            Button level17 = new Button("LEVEL 17");
-            Button level18 = new Button("LEVEL 18");
-            Button level19 = new Button("LEVEL 19");
-            Button level20 = new Button("LEVEL 20");
-
-            level1.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level11.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
+            //bouton qui permet de sauvegarder le niveau(position des pièces)
+            Button save = new Button("Save");
+            save.setOnMouseClicked(event -> {
+                String[] saved = fileName.split(".txt");
+                save(saved[0] + "_save.txt");
 
             });
 
-            level2.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level12.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
+            //creation de tous les boutons levels
+            VBox level = new VBox(10);
+            VBox level1 = new VBox(10);
 
-            });
+            for(int i = 1; i <= 10; i++){
+                Button button = createLevel(i);
+                level.getChildren().add(button);
+            }
+            for(int i = 11; i <= 20; i++){
+                Button button = createLevel(i);
+                level1.getChildren().add(button);
+            }
 
 
-            level3.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level13.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
+            menu.getChildren().addAll(resume, levels,save, exit);
+            menu1.getChildren().addAll(back, level, next);
+            menu2.getChildren().addAll(previous, level1);
 
-            });
-
-            level4.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level14.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level5.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level15.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level6.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level16.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level7.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level17.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level8.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level18.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level9.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level19.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level10.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level20.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level11.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level21.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level12.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level22.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level13.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level23.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level14.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level24.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level15.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level25.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level16.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level26.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level17.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level27.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level18.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level28.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level19.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level29.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-            level20.setOnMouseClicked(event1 -> {
-                Level javafxApp = new Level("res/level/level30.txt");
-                try {
-                    javafxApp.init();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    javafxApp.start(new Stage());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                Node source = (Node) event1.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.hide();
-
-            });
-
-
-            menu.getChildren().addAll(resume, levels, exit);
-            menu1.getChildren().addAll(back, level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, next);
-            menu2.getChildren().addAll(previous, level11, level12, level13, level14, level15, level16, level17, level18, level19, level20);
-
-            Rectangle rt = new Rectangle(900, 700);
+            Rectangle rt = new Rectangle(2000, 1700);
             rt.setFill(Color.GRAY);
             rt.setOpacity(0.4);
 
@@ -746,6 +441,29 @@ public class Level extends Application{
         }
     }
 
+    //fonction qui permet de créer les boutons level
+    private Button createLevel(int level){
+        Button button = new Button("Level" + level);
+        button.setOnMouseClicked(event -> {
+            Level javafxApp = new Level("res/level/level" + level + ".txt");
+            try {
+                javafxApp.init();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                javafxApp.start(new Stage());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.hide();
+        });
+        return button;
+    }
+
+    //fonction qui a pour but de définir la forme et les caractéristique des boutons
     public static class Button extends StackPane {
         public Button(String name) {
             Text text = new Text(name);
